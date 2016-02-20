@@ -5,7 +5,7 @@ _context.invoke(function(Nittro) {
             page: {
                 whitelistLinks: false,
                 whitelistForms: false,
-                defaultTransition: '.transition-slide, .transition-fade'
+                defaultTransition: '.transition-auto'
             },
             flashes: {
                 layer: document.body
@@ -19,6 +19,7 @@ _context.invoke(function(Nittro) {
                     '::addTransport(Nittro.Ajax.Transport.Native())'
                 ]
             },
+            'router': 'Nittro.Application.Routing.Router()!',
             'page': {
                 factory: 'Nittro.Page.Service(options: %page%)',
                 run: true,
