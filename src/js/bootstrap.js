@@ -1,7 +1,8 @@
-_context.invoke(function(Nittro) {
+_context.invoke(function(Nittro, DOM, Arrays) {
 
-    var di = new Nittro.DI.Context({
-        params: {
+    var params = DOM.getById('nittro-params'),
+        defaults = {
+            basePath: '',
             page: {
                 whitelistLinks: false,
                 whitelistForms: false,
@@ -10,7 +11,18 @@ _context.invoke(function(Nittro) {
             flashes: {
                 layer: document.body
             }
-        },
+        };
+
+    if (params && params.nodeName.toLowerCase() === 'script' && params.type === 'application/json') {
+        params = Arrays.mergeTree(defaults, JSON.parse(params.textContent.trim()));
+
+    } else {
+        params = defaults;
+
+    }
+
+    var di = new Nittro.DI.Context({
+        params: params,
         services: {
             'ajax': {
                 factory: 'Nittro.Ajax.Service()',
@@ -19,7 +31,7 @@ _context.invoke(function(Nittro) {
                     '::addTransport(Nittro.Ajax.Transport.Native())'
                 ]
             },
-            'router': 'Nittro.Application.Routing.Router()!',
+            'router': 'Nittro.Application.Routing.Router(basePath: %basePath%)!',
             'page': {
                 factory: 'Nittro.Page.Service(options: %page%)',
                 run: true,
@@ -39,5 +51,7 @@ _context.invoke(function(Nittro) {
     this.di = di;
     di.runServices();
 
+}, {
+    DOM: 'Utils.DOM',
+    Arrays: 'Utils.Arrays'
 });
-
