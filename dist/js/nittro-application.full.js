@@ -2552,7 +2552,7 @@ _context.invoke('Utils', function (Arrays, Strings, undefined) {
     };
 
     var getElem = function (elem) {
-        Arrays.isArrayLike(elem) && (elem = elem[0]);
+        Arrays.isArrayLike(elem) && elem !== window && (elem = elem[0]);
         return typeof elem === 'string' ? DOM.getById(elem) : elem;
 
     };
@@ -7764,9 +7764,6 @@ _context.invoke(function(Nittro, DOM, Arrays) {
             'transitions': 'Nittro.Page.Transitions(300)',
             'formLocator': 'Nittro.Forms.Locator()',
             'flashMessages': 'Nittro.Widgets.FlashMessages(%flashes%)'
-        },
-        factories: {
-            formDialog: 'Nittro.Widgets.FormDialog(@formLocator)'
         }
     });
 
