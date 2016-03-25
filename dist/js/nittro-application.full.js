@@ -7340,7 +7340,7 @@ _context.invoke('Nittro.DI', function(Container, Arrays, HashMap, ReflectionClas
                     return this.getParam(arg.replace(/^%|%$/g, ''));
 
                 } else {
-                    return arg.replace(/%([a-z0-9_.-]+)%/i, function () {
+                    return arg.replace(/%([a-z0-9_.-]+)%/gi, function () {
                         return this.getParam(arguments[1]);
 
                     }.bind(this));

@@ -28,7 +28,7 @@ describe('Nittro.DI.Context', function () {
                 }
             },
             services: {
-                testService: '__Test.Nittro.DI.Context.TestClass(%param2.subparam1%)'
+                testService: '__Test.Nittro.DI.Context.TestClass(%param2.subparam1%, %param2.subparam2%)'
             },
             factories: {
                 testFactory1: '__Test.Nittro.DI.Context.TestClass("splat")',
