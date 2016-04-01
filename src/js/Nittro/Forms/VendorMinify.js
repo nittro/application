@@ -7,7 +7,7 @@ _context.invoke('Nittro.Forms', function (DOM, Arrays) {
 
     define.amd = true;
 
-    /*! @package name="nette/forms" file="src/assets/netteForms.js" */
+    /*! @package type="composer" name="nette/forms" file="src/assets/netteForms.js" */
 
     var VendorForms = _context.lookup('Nittro.Forms.Vendor');
 
