@@ -1401,8 +1401,8 @@ _context.invoke('Nittro.Forms', function (DOM, Arrays, DateTime, FormData, Vendo
                 elem = this._.form.elements.item(i);
 
                 if (!DOM.hasClass(elem, 'no-reset')) {
-                    if (elem.tagName.toLowerCase() === 'select' || elem.type === 'hidden') {
-                        this.setValue(elem, DOM.getData(elem, 'defaultValue') || '');
+                    if (elem.type === 'hidden') {
+                        this.setValue(elem, DOM.getData(elem, 'default-value') || '');
 
                     } else if (elem.type === 'file') {
                         this.setValue(elem, null);
