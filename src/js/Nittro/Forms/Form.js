@@ -213,8 +213,15 @@ _context.invoke('Nittro.Forms', function (DOM, Arrays, DateTime, FormData, Vendo
                 var btn = this._.form.elements.namedItem(by);
 
                 if (btn && btn.type === 'submit') {
+                    try {
+                        evt = new MouseEvent('click', {bubbles: true, cancelable: true, view: window});
+
+                    } catch (e) {
                     evt = document.createEvent('MouseEvents');
                     evt.initMouseEvent('click', true, true, window);
+
+                    }
+
                     btn.dispatchEvent(evt);
                     return this;
 
@@ -224,8 +231,15 @@ _context.invoke('Nittro.Forms', function (DOM, Arrays, DateTime, FormData, Vendo
                 }
             }
 
+            try {
+                evt = new Event('submit', {bubbles: true, cancelable: true});
+
+            } catch (e) {
             evt = document.createEvent('HTMLEvents');
             evt.initEvent('submit', true, true);
+
+            }
+
             this._.form.dispatchEvent(evt);
 
             return this;
