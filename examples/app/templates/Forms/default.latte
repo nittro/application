@@ -1,0 +1,39 @@
+{block content}
+    <h2>Forms</h2>
+
+    {control contactForm}
+
+
+    <!-- this is just to show you that the data is really sent :-) -->
+    <div n:snippet="message">
+        {ifset $message}
+            <h3>Your message:</h3>
+
+            <h4>Sender info</h4>
+            <p>
+                <strong>Name:</strong> {$message->name}<br />
+                <strong>E-mail:</strong> {$message->email} <em n:if="$message->preferred === 'email'">(preferred)</em><br />
+                <strong>Phone:</strong> {$message->phone} <em n:if="$message->preferred === 'phone'">(preferred)</em><br />
+                <strong>Topic:</strong> {$message->topic}
+            </p>
+
+            <h4>Message content:</h4>
+            <p>{$message->content}</p>
+
+            <h4>Attachments:</h4>
+            {foreach $message->attachments as $attachment}
+                {if $attachment->isOk()}
+                    <p><img src="{$attachment->toImage()|dataStream}" style="max-width:200px;" alt="{$attachment->getName()}" /></p>
+                {/if}
+            {/foreach}
+
+            {if $message->subscribe}
+            <h4>Additional info:</h4>
+            <p>
+                <strong>Subscribed newsletters:</strong> {implode(', ', $message->subscribe)}<br />
+            </p>
+            {/if}
+        {/ifset}
+    </div>
+
+{/block}

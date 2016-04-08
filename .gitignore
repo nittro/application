@@ -105,3 +105,6 @@ node_modules/
 bower_components/
 
 # Created by .ignore support plugin (hsz.mobi)
+
+/composer.lock
+/vendor
