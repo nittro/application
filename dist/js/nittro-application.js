@@ -1164,6 +1164,11 @@ _context.invoke('Nittro.Forms', function (DOM, Arrays, DateTime, FormData, Vendo
 
         },
 
+        getElements: function () {
+            return this._.form.elements;
+            
+        },
+
         setSubmittedBy: function (value) {
             this._.submittedBy = value;
             return this;
