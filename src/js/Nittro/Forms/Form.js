@@ -28,7 +28,7 @@ _context.invoke('Nittro.Forms', function (DOM, Arrays, DateTime, FormData, Vendo
 
         getElements: function () {
             return this._.form.elements;
-            
+
         },
 
         setSubmittedBy: function (value) {
@@ -178,7 +178,7 @@ _context.invoke('Nittro.Forms', function (DOM, Arrays, DateTime, FormData, Vendo
             for (i = 0; i < this._.form.elements.length; i++) {
                 elem = this._.form.elements.item(i);
 
-                if (elem.name && names.indexOf(elem.name) === -1 && (elem.type === 'submit' && elem.name === this._.submittedBy || !(elem.type in {button: 1, reset: 1}))) {
+                if (elem.name && names.indexOf(elem.name) === -1 && (elem.type === 'submit' && elem.name === this._.submittedBy || !(elem.type in {submit: 1, button: 1, reset: 1}))) {
                     names.push(elem.name);
 
                 }
@@ -281,14 +281,12 @@ _context.invoke('Nittro.Forms', function (DOM, Arrays, DateTime, FormData, Vendo
             for (i = 0; i < this._.form.elements.length; i++) {
                 elem = this._.form.elements.item(i);
 
-                if (!DOM.hasClass(elem, 'no-reset')) {
-                    if (elem.type === 'hidden') {
-                        this.setValue(elem, DOM.getData(elem, 'default-value') || '');
+                if (elem.type === 'hidden' && elem.hasAttribute('data-default-value')) {
+                    this.setValue(elem, DOM.getData(elem, 'default-value') || '');
 
-                    } else if (elem.type === 'file') {
-                        this.setValue(elem, null);
+                } else if (elem.type === 'file') {
+                    this.setValue(elem, null);
 
-                    }
                 }
             }
 

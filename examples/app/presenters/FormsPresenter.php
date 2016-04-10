@@ -14,6 +14,17 @@ use Nette\Application\UI\Form;
 class FormsPresenter extends BasePresenter {
 
 
+
+
+    public function informMessageSaved() {
+        $this->flashMessage('Saved');
+    }
+
+    public function informMessageSent() {
+        $this->flashMessage('Sent');
+
+    }
+
     public function doSendMessage(Form $form, $message) {
         $this->template->message = $message;
         $this->redrawControl('message');
@@ -66,7 +77,11 @@ class FormsPresenter extends BasePresenter {
             ->setOmitted()
             ->setRequired();
 
-        $form->addSubmit('send', 'Send message');
+        $form->addSubmit('send', 'Send message')
+            ->onClick[] = [$this, 'informMessageSent'];
+
+        $form->addSubmit('save', 'Save message')
+            ->onClick[] = [$this, 'informMessageSaved'];
 
         $form->onSuccess[] = [$this, 'doSendMessage'];
 
