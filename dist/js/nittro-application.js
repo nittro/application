@@ -1225,7 +1225,7 @@ _context.invoke('Nittro.Forms', function (DOM, Arrays, DateTime, FormData, Vendo
                 }
 
                 if (value === undefined) {
-                    if (reset && !DOM.hasClass(elem, 'no-reset')) {
+                    if (reset) {
                         value = null;
 
                     } else {

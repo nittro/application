@@ -4900,6 +4900,29 @@ _context.invoke('Nittro.Page', function (DOM, Arrays, Url, SnippetHelpers, Snipp
 
         },
 
+        saveHistoryState: function(url, title, replace) {
+            if (!title) {
+                title = document.title;
+            } else {
+                document.title = title;
+            }
+
+            if (url) {
+                url = Url.from(url).toAbsolute();
+            } else {
+                url = document.location.href;
+            }
+
+            if (replace) {
+                window.history.replaceState({ _nittro: true }, title, url);
+            } else {
+                window.history.pushState({ _nittro: true }, title, url);
+            }
+
+            return this;
+
+        },
+
         _checkFormLocator: function (need) {
             if (this._.formLocator) {
                 return true;
@@ -4950,7 +4973,7 @@ _context.invoke('Nittro.Page', function (DOM, Arrays, Url, SnippetHelpers, Snipp
             }
 
             this._.currentUrl = Url.from(url);
-            window.history.pushState({ _nittro: true }, document.title, this._.currentUrl.toAbsolute());
+            this.saveHistoryState(this._.currentUrl);
 
         },
 
@@ -4965,7 +4988,7 @@ _context.invoke('Nittro.Page', function (DOM, Arrays, Url, SnippetHelpers, Snipp
                 this._.setup = true;
 
                 window.setTimeout(function () {
-                    window.history.replaceState({ _nittro: true }, document.title, document.location.href);
+                    this.saveHistoryState(null, null, true);
                     this._setup();
                     this._showHtmlFlashes();
                     this.trigger('update');
@@ -5331,6 +5354,13 @@ _context.invoke('Nittro.Widgets', function (DOM, Arrays) {
 
             if (target && typeof target === 'string') {
                 target = DOM.getById(target);
+
+            }
+
+            var targetClass = target ? DOM.getData(target, 'flash-class') : null;
+
+            if (targetClass) {
+                DOM.addClass(elem, targetClass);
 
             }
 
@@ -6688,7 +6718,7 @@ _context.invoke('Nittro.Forms', function (DOM, Arrays, DateTime, FormData, Vendo
                 }
 
                 if (value === undefined) {
-                    if (reset && !DOM.hasClass(elem, 'no-reset')) {
+                    if (reset) {
                         value = null;
 
                     } else {
