@@ -44,7 +44,7 @@ _context.invoke('Nittro.Neon', function(Nittro, HashMap, Tokenizer, Strings, Arr
 
                 if (data && typeof data === 'object') { // array or object literal
                     s = [];
-                    isList = Arrays.isArray(data);
+                    isList = Array.isArray(data);
 
                     if (options & Neon.BLOCK) {
                         Arrays.walk(data, function(k, v) {

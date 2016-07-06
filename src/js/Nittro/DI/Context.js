@@ -11,7 +11,7 @@ _context.invoke('Nittro.DI', function(Container, Arrays, HashMap, ReflectionClas
         for (i = 0; i < n; i++) {
             p = path[i];
 
-            if (Arrays.isArray(cursor) && p.match(/^\d+$/)) {
+            if (Array.isArray(cursor) && p.match(/^\d+$/)) {
                 p = parseInt(p);
 
             }
@@ -67,7 +67,7 @@ _context.invoke('Nittro.DI', function(Container, Arrays, HashMap, ReflectionClas
 
             }
 
-            if (Arrays.isArray(cursor) && p.match(/^\d+$/)) {
+            if (Array.isArray(cursor) && p.match(/^\d+$/)) {
                 p = parseInt(p);
 
             }

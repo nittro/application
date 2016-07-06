@@ -1,20 +1,15 @@
 _context.invoke('Nittro.Forms', function (DOM, Arrays) {
 
-    var define = function (cb) {
-        _context.register(cb(), 'Vendor');
+    if (!window.Nette || !window.Nette.validators) {
+        throw new Error('Nette/Forms vendor netteForms.js asset has not been loaded');
 
-    };
+    }
 
-    define.amd = true;
-
-    /*! @package type="composer" name="nette/forms" file="src/assets/netteForms.js" */
-
-    var VendorForms = _context.lookup('Nittro.Forms.Vendor');
-
-    VendorForms.addEvent = DOM.addListener;
+    var VendorForms = window.Nette;
+    _context.register(VendorForms, 'Vendor');
 
     VendorForms.validators.mimeType = function(elem, arg, val) {
-        if (!Arrays.isArray(arg)) {
+        if (!Array.isArray(arg)) {
             arg = arg.trim().split(/\s*,\s*/);
 
         }

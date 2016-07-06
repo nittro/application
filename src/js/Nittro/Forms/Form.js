@@ -131,7 +131,7 @@ _context.invoke('Nittro.Forms', function (DOM, Arrays, DateTime, FormData, Vendo
                 }
             } else if (elem.tagName.toLowerCase() === 'select') {
                 var single = elem.type === 'select-one',
-                    arr = Arrays.isArray(value),
+                    arr = Array.isArray(value),
                     v;
 
                 if (arr) {
@@ -152,7 +152,7 @@ _context.invoke('Nittro.Forms', function (DOM, Arrays, DateTime, FormData, Vendo
                     }
                 }
             } else if (elem.type === 'checkbox') {
-                elem.checked = Arrays.isArray(value) ? value.map(toStr).indexOf(elem.value) > -1 : !!value;
+                elem.checked = Array.isArray(value) ? value.map(toStr).indexOf(elem.value) > -1 : !!value;
 
             } else if (elem.type === 'date') {
                 elem.value = value ? DateTime.from(value).format('Y-m-d') : '';
@@ -194,7 +194,7 @@ _context.invoke('Nittro.Forms', function (DOM, Arrays, DateTime, FormData, Vendo
 
                 value = Vendor.getEffectiveValue(elem);
 
-                if (Arrays.isArray(value) || value instanceof FileList) {
+                if (Array.isArray(value) || value instanceof FileList) {
                     for (var j = 0; j < value.length; j++) {
                         data.append(names[i], value[j]);
 

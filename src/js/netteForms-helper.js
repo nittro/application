@@ -1,0 +1,3 @@
+window.Nette = {
+    noInit: true
+};

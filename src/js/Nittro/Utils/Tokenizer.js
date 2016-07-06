@@ -3,7 +3,7 @@ _context.invoke('Nittro.Utils', function(Nittro, Strings, Arrays, HashMap, undef
     var Tokenizer = _context.extend(function(patterns, matchCase) {
         var types = false;
 
-        if (!Arrays.isArray(patterns)) {
+        if (!Array.isArray(patterns)) {
             if (patterns instanceof HashMap) {
                 types = patterns.getKeys();
                 patterns = patterns.getValues();

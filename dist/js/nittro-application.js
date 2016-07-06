@@ -627,7 +627,7 @@ _context.invoke('Nittro.Utils', function(Nittro, Strings, Arrays, HashMap, undef
     var Tokenizer = _context.extend(function(patterns, matchCase) {
         var types = false;
 
-        if (!Arrays.isArray(patterns)) {
+        if (!Array.isArray(patterns)) {
             if (patterns instanceof HashMap) {
                 types = patterns.getKeys();
                 patterns = patterns.getValues();
@@ -762,7 +762,7 @@ _context.invoke('Nittro.Neon', function(Nittro, HashMap, Tokenizer, Strings, Arr
 
                 if (data && typeof data === 'object') { // array or object literal
                     s = [];
-                    isList = Arrays.isArray(data);
+                    isList = Array.isArray(data);
 
                     if (options & Neon.BLOCK) {
                         Arrays.walk(data, function(k, v) {
@@ -1108,10 +1108,8 @@ _context.invoke('Nittro.Forms', function (DOM, Arrays) {
     var VendorForms = window.Nette;
     _context.register(VendorForms, 'Vendor');
 
-    VendorForms.addEvent = DOM.addListener;
-
     VendorForms.validators.mimeType = function(elem, arg, val) {
-        if (!Arrays.isArray(arg)) {
+        if (!Array.isArray(arg)) {
             arg = arg.trim().split(/\s*,\s*/);
 
         }
@@ -1269,7 +1267,7 @@ _context.invoke('Nittro.Forms', function (DOM, Arrays, DateTime, FormData, Vendo
                 }
             } else if (elem.tagName.toLowerCase() === 'select') {
                 var single = elem.type === 'select-one',
-                    arr = Arrays.isArray(value),
+                    arr = Array.isArray(value),
                     v;
 
                 if (arr) {
@@ -1290,7 +1288,7 @@ _context.invoke('Nittro.Forms', function (DOM, Arrays, DateTime, FormData, Vendo
                     }
                 }
             } else if (elem.type === 'checkbox') {
-                elem.checked = Arrays.isArray(value) ? value.map(toStr).indexOf(elem.value) > -1 : !!value;
+                elem.checked = Array.isArray(value) ? value.map(toStr).indexOf(elem.value) > -1 : !!value;
 
             } else if (elem.type === 'date') {
                 elem.value = value ? DateTime.from(value).format('Y-m-d') : '';
@@ -1332,7 +1330,7 @@ _context.invoke('Nittro.Forms', function (DOM, Arrays, DateTime, FormData, Vendo
 
                 value = Vendor.getEffectiveValue(elem);
 
-                if (Arrays.isArray(value) || value instanceof FileList) {
+                if (Array.isArray(value) || value instanceof FileList) {
                     for (var j = 0; j < value.length; j++) {
                         data.append(names[i], value[j]);
 
@@ -1814,7 +1812,7 @@ _context.invoke('Nittro.DI', function(Container, Arrays, HashMap, ReflectionClas
         for (i = 0; i < n; i++) {
             p = path[i];
 
-            if (Arrays.isArray(cursor) && p.match(/^\d+$/)) {
+            if (Array.isArray(cursor) && p.match(/^\d+$/)) {
                 p = parseInt(p);
 
             }
@@ -1870,7 +1868,7 @@ _context.invoke('Nittro.DI', function(Container, Arrays, HashMap, ReflectionClas
 
             }
 
-            if (Arrays.isArray(cursor) && p.match(/^\d+$/)) {
+            if (Array.isArray(cursor) && p.match(/^\d+$/)) {
                 p = parseInt(p);
 
             }
